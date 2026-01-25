@@ -194,6 +194,7 @@
             animation: fadeIn 1.5s ease-out 0.9s both, shimmer 6s ease-in-out infinite;
             text-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
             letter-spacing: 2px;
+            transition: transform 0.2s ease;
         }
 
         @keyframes shimmer {
@@ -622,6 +623,46 @@
             50% { transform: scale(1.05); opacity: 0.85; }
         }
 
+        /* Fireworks Animation */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .firework::before,
+        .firework::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+
+        @keyframes firework-explosion {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        .firework-particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: firework-explosion 1s ease-out forwards;
+        }
+
         /* Music Control Button */
         .music-control {
             position: fixed;
@@ -670,38 +711,110 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .couple-names {
-                font-size: 2.8rem;
+                font-size: 3rem;
+                letter-spacing: 1px;
             }
 
             .ampersand {
-                font-size: 2rem;
+                font-size: 2.2rem;
                 margin: 0 10px;
             }
 
             .section-title {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
+                margin-bottom: 40px;
+                padding-bottom: 20px;
+            }
+
+            .countdown-title {
+                font-size: 1.6rem;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+            }
+
+            .countdown {
+                gap: 18px;
             }
 
             .countdown-item {
-                min-width: 80px;
-                padding: 15px;
+                min-width: 110px;
+                padding: 25px 20px;
+                border-width: 3px;
             }
 
             .countdown-number {
-                font-size: 2rem;
+                font-size: 2.8rem;
+            }
+
+            .countdown-label {
+                font-size: 0.95rem;
+                letter-spacing: 1px;
             }
 
             .decorative-border {
-                padding: 40px 25px;
+                padding: 45px 30px;
+                border-width: 3px;
+            }
+
+            .decorative-border::before,
+            .decorative-border::after {
+                font-size: 2.5rem;
+            }
+
+            .mantra {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .invitation-text {
+                font-size: 1.2rem;
+            }
+
+            .wedding-date-display {
+                font-size: 1.35rem;
             }
 
             .person-name {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
-            .invitation-message,
             .person-card {
-                padding: 30px 20px;
+                padding: 35px 25px;
+            }
+
+            .invitation-message {
+                padding: 40px 30px;
+                font-size: 1.2rem;
+                line-height: 2;
+            }
+
+            .contact-info {
+                padding: 35px 25px;
+                font-size: 1.2rem;
+            }
+
+            .map-container iframe {
+                height: 350px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .flower-decoration {
+                font-size: 2.2rem;
+            }
+
+            .music-control {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .music-control svg {
+                width: 28px;
+                height: 28px;
             }
 
             .photo-frame {
@@ -717,27 +830,142 @@
         @media (max-width: 480px) {
             .couple-names {
                 font-size: 2.2rem;
+                letter-spacing: 0px;
+            }
+
+            .ampersand {
+                font-size: 1.8rem;
+                margin: 0 8px;
             }
 
             .mantra {
                 font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
             }
 
             .invitation-text {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
+                margin-bottom: 20px;
+            }
+
+            .wedding-date-display {
+                font-size: 1.2rem;
+                margin: 20px 0;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+                margin-bottom: 35px;
+            }
+
+            .countdown-title {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+                margin-bottom: 25px;
+            }
+
+            .countdown {
+                gap: 12px;
             }
 
             .countdown-item {
-                min-width: 70px;
-                padding: 12px;
+                min-width: 75px;
+                padding: 18px 12px;
+                border-width: 3px;
+                border-radius: 18px;
             }
 
             .countdown-number {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
 
             .countdown-label {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+                margin-top: 8px;
+            }
+
+            .decorative-border {
+                padding: 35px 20px;
+                border-width: 3px;
+                border-radius: 20px;
+            }
+
+            .decorative-border::before,
+            .decorative-border::after {
+                font-size: 2rem;
+                top: -18px;
+            }
+
+            .decorative-border::after {
+                bottom: -18px;
+            }
+
+            .person-name {
+                font-size: 1.9rem;
+            }
+
+            .person-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            .invitation-message {
+                padding: 35px 20px;
+                font-size: 1.1rem;
+                line-height: 1.9;
+                border-radius: 20px;
+            }
+
+            .invitation-message::before,
+            .invitation-message::after {
+                font-size: 1.2rem;
+            }
+
+            .contact-info {
+                padding: 30px 20px;
+                font-size: 1.1rem;
+            }
+
+            .contact-info::before {
+                font-size: 2rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+
+            .map-container {
+                border-width: 3px;
+                border-radius: 20px;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .flower-decoration {
+                font-size: 2rem;
+                margin: 15px 0;
+            }
+
+            .hero {
+                padding: 30px 15px;
+            }
+
+            .music-control {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .music-control svg {
+                width: 25px;
+                height: 25px;
             }
 
             .photo-frame {
@@ -748,16 +976,7 @@
             .couple-photos {
                 gap: 20px;
             }
-
-            .music-control {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .music-control svg {
-                width: 25px;
+        }
                 height: 25px;
             }
         }
@@ -795,7 +1014,7 @@
                     You are invited to the wedding of
                 </div>
                 
-                <h1 class="couple-names">
+                <h1 class="couple-names" id="coupleNames" style="cursor: pointer;" title="Click for fireworks! 🎆">
                     Priyanka & Tanmoy
                 </h1>
                 
@@ -975,6 +1194,59 @@
                 musicToggle.classList.add('playing');
             }
             isPlaying = !isPlaying;
+        });
+
+        // Fireworks Animation
+        const coupleNames = document.getElementById('coupleNames');
+        
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#FF1744', '#FFC107', '#E91E63', '#9C27B0'];
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+        }
+
+        function launchMultipleFireworks() {
+            const fireworkCount = 5;
+            const delays = [0, 200, 400, 600, 800];
+            
+            delays.forEach((delay, index) => {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * (window.innerHeight * 0.6);
+                    createFirework(x, y);
+                }, delay);
+            });
+        }
+
+        coupleNames.addEventListener('click', function(e) {
+            launchMultipleFireworks();
+            
+            // Add a little bounce animation to the names
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
         });
     </script>
 </body>
