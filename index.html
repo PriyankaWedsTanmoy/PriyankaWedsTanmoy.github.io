@@ -623,6 +623,171 @@
             50% { transform: scale(1.05); opacity: 0.85; }
         }
 
+        /* Guest Blessings Section */
+        .blessings-form-container {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 205, 0.95));
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 
+                0 20px 60px rgba(196, 30, 58, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.9);
+            border: 3px double var(--golden-yellow);
+        }
+
+        .blessings-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--deep-red);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            padding: 12px 16px;
+            border: 2px solid var(--golden-yellow);
+            border-radius: 12px;
+            background: white;
+            color: var(--dark-maroon);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .blessing-submit-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            color: white;
+            border: 3px solid var(--golden-yellow);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.3);
+            margin-top: 10px;
+        }
+
+        .blessing-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(196, 30, 58, 0.5);
+            background: linear-gradient(135deg, var(--deep-red), var(--primary-red));
+        }
+
+        .blessing-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .blessings-display {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .blessings-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-red);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blessings-list {
+            display: grid;
+            gap: 25px;
+        }
+
+        .blessing-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 205, 0.95));
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15);
+            border: 2px solid var(--golden-yellow);
+            border-left: 6px solid var(--primary-red);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blessing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.25);
+        }
+
+        .blessing-author {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blessing-author::before {
+            content: '💐';
+            font-size: 1.3rem;
+        }
+
+        .blessing-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--dark-maroon);
+            font-style: italic;
+        }
+
+        .blessing-date {
+            font-size: 0.9rem;
+            color: var(--burnt-orange);
+            margin-top: 12px;
+            text-align: right;
+        }
+
+        .no-blessings {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--burnt-orange);
+            padding: 40px;
+            font-style: italic;
+        }
+
         /* Fireworks Animation */
         .firework {
             position: fixed;
@@ -817,6 +982,23 @@
                 height: 28px;
             }
 
+            .blessings-form-container {
+                padding: 35px 25px;
+            }
+
+            .blessing-submit-btn {
+                font-size: 1rem;
+                padding: 14px 24px;
+            }
+
+            .blessing-card {
+                padding: 25px 20px;
+            }
+
+            .blessings-title {
+                font-size: 1.8rem;
+            }
+
             .photo-frame {
                 width: 160px;
                 height: 160px;
@@ -976,6 +1158,38 @@
             .couple-photos {
                 gap: 20px;
             }
+
+            .blessings-form-container {
+                padding: 30px 20px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 1rem;
+                padding: 10px 14px;
+            }
+
+            .blessing-submit-btn {
+                font-size: 0.95rem;
+                padding: 14px 20px;
+            }
+
+            .blessing-card {
+                padding: 25px 18px;
+            }
+
+            .blessing-author {
+                font-size: 1.1rem;
+            }
+
+            .blessing-text {
+                font-size: 1.05rem;
+            }
+
+            .blessings-title {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
         }
                 height: 25px;
             }
@@ -1114,9 +1328,53 @@
             </div>
         </section>
 
+        <!-- Guest Blessings Section -->
+        <section>
+            <h2 class="section-title">Share Your Blessings</h2>
+            
+            <div class="blessings-form-container">
+                <p style="text-align: center; font-size: 1.2rem; color: var(--dark-maroon); margin-bottom: 30px;">
+                    We would love to hear your blessings and wishes for our special day!
+                </p>
+                
+                <form id="blessingsForm" class="blessings-form">
+                    <div class="form-group">
+                        <label for="guestName">Your Name *</label>
+                        <input type="text" id="guestName" name="guestName" required placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guestPhone">Your Phone Number *</label>
+                        <input type="tel" id="guestPhone" name="guestPhone" required placeholder="Enter your phone number" pattern="[0-9]{10,15}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guestMessage">Your Blessing *</label>
+                        <textarea id="guestMessage" name="guestMessage" required placeholder="Share your heartfelt wishes and blessings..." rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="blessing-submit-btn">
+                        <span>📱 Send via WhatsApp & Post on Website</span>
+                    </button>
+                    
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--burnt-orange); margin-top: 15px;">
+                        Your blessing will be sent to us on WhatsApp and displayed below
+                    </p>
+                </form>
+            </div>
+
+            <div class="blessings-display">
+                <h3 class="blessings-title">Blessings from Our Loved Ones</h3>
+                <div id="blessingsList" class="blessings-list">
+                    <!-- Blessings will be displayed here -->
+                    <p class="no-blessings">Be the first to share your blessings! 🌟</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Information -->
         <section>
-            <h2 class="section-title">Contact Us</h2>
+            <h2 class="section-title">Contact</h2>
             <div class="contact-info">
                 <p>For any queries or information, please feel free to contact:</p>
                 <p style="margin-top: 20px;">
@@ -1248,6 +1506,131 @@
                 this.style.transform = 'scale(1)';
             }, 200);
         });
+
+        // Guest Blessings Functionality
+        const blessingsForm = document.getElementById('blessingsForm');
+        const blessingsList = document.getElementById('blessingsList');
+        const WHATSAPP_NUMBER = '918240749830'; // Your WhatsApp number with country code
+
+        // Load existing blessings from storage
+        async function loadBlessings() {
+            try {
+                const keys = await window.storage.list('blessing:', true);
+                
+                if (!keys || !keys.keys || keys.keys.length === 0) {
+                    blessingsList.innerHTML = '<p class="no-blessings">Be the first to share your blessings! 🌟</p>';
+                    return;
+                }
+
+                // Get all blessings
+                const blessings = [];
+                for (const key of keys.keys) {
+                    try {
+                        const result = await window.storage.get(key, true);
+                        if (result && result.value) {
+                            const blessing = JSON.parse(result.value);
+                            blessings.push(blessing);
+                        }
+                    } catch (e) {
+                        console.error('Error loading blessing:', e);
+                    }
+                }
+
+                // Sort by date (newest first)
+                blessings.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                // Display blessings
+                if (blessings.length > 0) {
+                    displayBlessings(blessings);
+                } else {
+                    blessingsList.innerHTML = '<p class="no-blessings">Be the first to share your blessings! 🌟</p>';
+                }
+            } catch (error) {
+                console.error('Error loading blessings:', error);
+                blessingsList.innerHTML = '<p class="no-blessings">Be the first to share your blessings! 🌟</p>';
+            }
+        }
+
+        function displayBlessings(blessings) {
+            blessingsList.innerHTML = blessings.map(blessing => `
+                <div class="blessing-card">
+                    <div class="blessing-author">${escapeHtml(blessing.name)}</div>
+                    <div class="blessing-text">"${escapeHtml(blessing.message)}"</div>
+                    <div class="blessing-date">${formatDate(blessing.date)}</div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Handle form submission
+        blessingsForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('guestName').value.trim();
+            const phone = document.getElementById('guestPhone').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
+
+            if (!name || !phone || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Create blessing object
+            const blessing = {
+                name: name,
+                phone: phone,
+                message: message,
+                date: new Date().toISOString()
+            };
+
+            // Save to storage
+            try {
+                const timestamp = Date.now();
+                const key = `blessing:${timestamp}`;
+                await window.storage.set(key, JSON.stringify(blessing), true);
+
+                // Create WhatsApp message
+                const whatsappMessage = `*New Wedding Blessing! 💐*%0A%0A` +
+                    `*From:* ${encodeURIComponent(name)}%0A` +
+                    `*Phone:* ${phone}%0A` +
+                    `*Message:* ${encodeURIComponent(message)}`;
+
+                // Open WhatsApp
+                const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+                window.open(whatsappUrl, '_blank');
+
+                // Clear form
+                blessingsForm.reset();
+
+                // Reload blessings
+                await loadBlessings();
+
+                // Show success message
+                alert('Thank you for your blessing! 🙏\nYour message will be sent via WhatsApp and has been posted on our website.');
+
+            } catch (error) {
+                console.error('Error saving blessing:', error);
+                alert('There was an error saving your blessing. Please try again.');
+            }
+        });
+
+        // Load blessings on page load
+        if (window.storage) {
+            loadBlessings();
+        } else {
+            blessingsList.innerHTML = '<p class="no-blessings">Blessings feature is currently unavailable. Please try again later.</p>';
+        }
     </script>
 </body>
 </html>
