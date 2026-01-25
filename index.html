@@ -26,13 +26,18 @@
             --burnt-orange: #CC5500;
             --cream: #FFF8DC;
             --dark-maroon: #5C0A0A;
+            --light-gold: #FFFACD;
         }
 
         body {
             font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, var(--cream) 0%, #FFF5E6 100%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.15) 0%, transparent 40%),
+                linear-gradient(135deg, #FFF8DC 0%, #FFFACD 50%, #FFF5E6 100%);
             color: var(--dark-maroon);
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Decorative Background Pattern */
@@ -44,10 +49,26 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 50%);
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.03) 35px, rgba(255, 215, 0, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(196, 30, 58, 0.03) 35px, rgba(196, 30, 58, 0.03) 70px);
             pointer-events: none;
             z-index: 0;
+        }
+
+        /* Floating decorative elements */
+        body::after {
+            content: '✦ ❋ ✦ ❋ ✦ ❋ ✦ ❋ ✦';
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--golden-yellow);
+            opacity: 0.4;
+            z-index: 0;
+            letter-spacing: 40px;
+            animation: float 6s ease-in-out infinite;
         }
 
         .container {
@@ -69,12 +90,12 @@
             text-align: center;
             position: relative;
             background: 
-                linear-gradient(to bottom, rgba(255, 248, 220, 0.85), rgba(255, 245, 230, 0.9)),
+                linear-gradient(to bottom, rgba(255, 248, 220, 0.75), rgba(255, 245, 230, 0.85)),
                 url('couple-photo.jpg') center/cover no-repeat;
             background-attachment: fixed;
         }
         
-        /* Fallback pattern if no image is uploaded */
+        /* Overlay pattern */
         .hero::before {
             content: '';
             position: absolute;
@@ -82,20 +103,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="paisley" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="%23FFD700" opacity="0.3"/><circle cx="25" cy="25" r="1.5" fill="%23C41E3A" opacity="0.2"/><circle cx="75" cy="75" r="1.5" fill="%23C41E3A" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23paisley)"/></svg>');
-            z-index: -1;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 70% 60%, rgba(196, 30, 58, 0.2) 0%, transparent 30%),
+                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="paisley" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="%23FFD700" opacity="0.3"/><circle cx="25" cy="25" r="1.5" fill="%23C41E3A" opacity="0.2"/><circle cx="75" cy="75" r="1.5" fill="%23C41E3A" opacity="0.2"/><path d="M 20 50 Q 30 30, 50 50 T 80 50" stroke="%23FFD700" stroke-width="0.5" fill="none" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23paisley)"/></svg>');
+            z-index: 0;
             pointer-events: none;
+        }
+        
+        .hero > * {
+            position: relative;
+            z-index: 1;
         }
 
         .decorative-border {
-            border: 3px solid var(--golden-yellow);
-            border-radius: 20px;
+            border: 4px double var(--golden-yellow);
+            border-radius: 30px;
             padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.7);
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 205, 0.9)),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 215, 0, 0.05) 10px, rgba(255, 215, 0, 0.05) 20px);
             backdrop-filter: blur(10px);
             box-shadow: 
-                0 20px 60px rgba(196, 30, 58, 0.2),
-                inset 0 0 30px rgba(255, 215, 0, 0.1);
+                0 25px 70px rgba(196, 30, 58, 0.25),
+                inset 0 0 40px rgba(255, 215, 0, 0.15),
+                0 0 0 8px rgba(255, 255, 255, 0.5);
             max-width: 900px;
             position: relative;
             animation: fadeInScale 1.2s ease-out;
@@ -114,28 +146,29 @@
 
         .decorative-border::before,
         .decorative-border::after {
-            content: '✦';
+            content: '❋';
             position: absolute;
-            font-size: 2rem;
+            font-size: 3rem;
             color: var(--golden-yellow);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             animation: sparkle 2s infinite;
         }
 
         .decorative-border::before {
-            top: -15px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .decorative-border::after {
-            bottom: -15px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-            50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1) rotate(0deg); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.15) rotate(180deg); }
         }
 
         .mantra {
@@ -167,13 +200,27 @@
             font-family: 'Playfair Display', serif;
             font-size: 4.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--burnt-orange) 50%, var(--golden-yellow) 100%);
+            background: linear-gradient(135deg, 
+                var(--deep-red) 0%, 
+                var(--primary-red) 25%, 
+                var(--burnt-orange) 50%, 
+                var(--golden-yellow) 75%,
+                var(--burnt-orange) 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin: 20px 0;
             line-height: 1.2;
-            animation: fadeIn 1.5s ease-out 0.9s both;
+            animation: fadeIn 1.5s ease-out 0.9s both, shimmer 4s ease-in-out infinite;
+            text-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
+            letter-spacing: 2px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
         }
 
         .ampersand {
@@ -314,16 +361,39 @@
         .countdown-item {
             background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
             color: white;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 25px 20px;
+            border-radius: 20px;
             min-width: 100px;
-            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
-            border: 2px solid var(--golden-yellow);
-            transition: transform 0.3s ease;
+            box-shadow: 
+                0 10px 30px rgba(196, 30, 58, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 3px solid var(--golden-yellow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .countdown-item:hover::before {
+            left: 100%;
         }
 
         .countdown-item:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 
+                0 15px 40px rgba(196, 30, 58, 0.5),
+                0 0 20px rgba(255, 215, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .countdown-number {
@@ -354,7 +424,29 @@
             text-align: center;
             margin-bottom: 50px;
             position: relative;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(196, 30, 58, 0.1);
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '❋';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--golden-yellow);
+            opacity: 0.6;
+        }
+
+        .section-title::before {
+            left: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .section-title::after {
+            right: 0;
+            animation: float 3s ease-in-out infinite 1.5s;
         }
 
         .section-title::after {
@@ -363,9 +455,22 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--golden-yellow), transparent);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--golden-yellow) 20%, 
+                var(--primary-red) 50%, 
+                var(--golden-yellow) 80%, 
+                transparent);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .section-title::before,
+            .section-title::after {
+                display: none;
+            }
         }
 
         /* About Couple */
@@ -378,18 +483,42 @@
         }
 
         .person-card {
-            background: white;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 205, 0.95));
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.15);
-            border: 2px solid var(--golden-yellow);
+            border-radius: 25px;
+            box-shadow: 
+                0 15px 50px rgba(196, 30, 58, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 3px double var(--golden-yellow);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .person-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .person-card:hover::before {
+            opacity: 1;
         }
 
         .person-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(196, 30, 58, 0.25);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 25px 70px rgba(196, 30, 58, 0.3),
+                0 0 0 6px rgba(255, 215, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            border-color: var(--primary-red);
         }
 
         .person-name {
@@ -410,15 +539,43 @@
         .invitation-message {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 205, 0.95));
             padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.15);
-            border: 2px solid var(--golden-yellow);
+            border-radius: 25px;
+            box-shadow: 
+                0 20px 60px rgba(196, 30, 58, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.9);
+            border: 3px double var(--golden-yellow);
             font-size: 1.3rem;
-            line-height: 2;
+            line-height: 2.2;
             text-align: center;
             color: var(--dark-maroon);
+            position: relative;
+        }
+
+        .invitation-message::before,
+        .invitation-message::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--golden-yellow);
+        }
+
+        .invitation-message::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 25px 0 0 0;
+        }
+
+        .invitation-message::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 25px 0;
         }
 
         .invitation-message p {
@@ -434,10 +591,22 @@
         .map-container {
             max-width: 900px;
             margin: 0 auto;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.2);
-            border: 3px solid var(--golden-yellow);
+            box-shadow: 
+                0 20px 60px rgba(196, 30, 58, 0.25),
+                0 0 0 4px var(--golden-yellow),
+                0 0 0 8px rgba(255, 255, 255, 0.5);
+            border: 4px solid var(--golden-yellow);
+            transition: all 0.4s ease;
+        }
+
+        .map-container:hover {
+            box-shadow: 
+                0 25px 70px rgba(196, 30, 58, 0.35),
+                0 0 0 4px var(--primary-red),
+                0 0 0 8px rgba(255, 255, 255, 0.7);
+            transform: translateY(-5px);
         }
 
         .map-container iframe {
@@ -451,13 +620,33 @@
             text-align: center;
             font-size: 1.3rem;
             color: var(--dark-maroon);
-            background: white;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 205, 0.95));
             padding: 40px;
-            border-radius: 20px;
+            border-radius: 25px;
             max-width: 600px;
             margin: 0 auto;
-            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.15);
-            border: 2px solid var(--golden-yellow);
+            box-shadow: 
+                0 15px 50px rgba(196, 30, 58, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.9);
+            border: 3px double var(--golden-yellow);
+            position: relative;
+        }
+
+        .contact-info::before {
+            content: '☎';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--golden-yellow));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
         }
 
         .contact-info a {
@@ -475,23 +664,96 @@
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--deep-red), var(--primary-red));
+            background: linear-gradient(135deg, var(--deep-red) 0%, var(--primary-red) 50%, var(--deep-red) 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
             font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255, 215, 0, 0.1) 20px, rgba(255, 215, 0, 0.1) 40px);
+            pointer-events: none;
         }
 
         footer p {
             margin: 10px 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p:first-child {
+            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--golden-yellow);
         }
 
         /* Decorative Elements */
         .flower-decoration {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--golden-yellow);
             margin: 20px 0;
             display: block;
+            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(196, 30, 58, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: 3px solid var(--golden-yellow);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(196, 30, 58, 0.6);
+        }
+
+        .music-control svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        .music-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 25px rgba(196, 30, 58, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 35px rgba(255, 215, 0, 0.6);
+            }
         }
 
         /* Responsive Design */
@@ -575,10 +837,40 @@
             .couple-photos {
                 gap: 20px;
             }
+
+            .music-control {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .music-control svg {
+                width: 25px;
+                height: 25px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="wedding-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Button -->
+    <div class="music-control" id="musicToggle" title="Click to play/pause music">
+        <!-- Speaker Off Icon (default) -->
+        <svg id="speakerOff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+        </svg>
+        <!-- Speaker On Icon (hidden initially) -->
+        <svg id="speakerOn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+    </div>
+
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
@@ -672,26 +964,26 @@
 
         <!-- About the Couple -->
         <section>
-            <h2 class="section-title">About the Couple</h2>
+            <h2 class="section-title">বর ও কন্যা সম্পর্কে</h2>
             <div class="couple-details">
                 <div class="person-card">
-                    <h3 class="person-name">Priyanka</h3>
+                    <h3 class="person-name">কন্যা প্রিয়াঙ্কা</h3>
                     <p style="font-size: 1.2rem; color: var(--burnt-orange); margin-bottom: 20px; font-style: italic;">
-                        Daughter of Sumanta Hazra & Papiya Hazra
+                        কন্যা শ্রী সুমন্ত হাজরা ও শ্রীমতী পাপিয়া হাজরা
                     </p>
                     <div class="person-details">
-                        <p>30/2/1/1 Narasingha Dutta Road</p>
-                        <p>Kadamtala, Howrah - 711101</p>
+                        <p>৩০/২/১/১ নরসিংহ দত্ত রোড</p>
+                        <p>কদমতলা, হাওড়া - ৭১১১০১</p>
                     </div>
                 </div>
                 <div class="person-card">
-                    <h3 class="person-name">Tanmoy</h3>
+                    <h3 class="person-name">কল্যাণীয় তন্ময়</h3>
                     <p style="font-size: 1.2rem; color: var(--burnt-orange); margin-bottom: 20px; font-style: italic;">
-                        Son of Ajit Kumar Barui & Dalia Barui
+                        পুত্র শ্রী অজিত কুমার বাড়ুই ও শ্রীমতী ডালিয়া বাড়ুই
                     </p>
                     <div class="person-details">
-                        <p>Balitikuri, Kalitala</p>
-                        <p>Howrah - 711113</p>
+                        <p>বালিটিকুরি, কালিতলা</p>
+                        <p>হাওড়া - ৭১১১১৩</p>
                     </div>
                 </div>
             </div>
@@ -768,6 +1060,28 @@
                     });
                 }
             });
+        });
+
+        // Music Control
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const speakerOff = document.getElementById('speakerOff');
+        const speakerOn = document.getElementById('speakerOn');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                speakerOff.style.display = 'block';
+                speakerOn.style.display = 'none';
+                musicToggle.classList.remove('playing');
+            } else {
+                bgMusic.play();
+                speakerOff.style.display = 'none';
+                speakerOn.style.display = 'block';
+                musicToggle.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
         });
     </script>
 </body>
