@@ -317,6 +317,42 @@
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
         }
 
+        /* Download Invitation Button */
+        .download-invitation-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 16px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            border: 3px solid var(--golden-yellow);
+            border-radius: 15px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.4);
+            animation: fadeIn 1.5s ease-out 1.5s both;
+        }
+
+        .download-invitation-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(196, 30, 58, 0.6);
+            background: linear-gradient(135deg, var(--deep-red), var(--primary-red));
+        }
+
+        .download-invitation-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .download-invitation-btn span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
         /* Countdown Timer */
         .countdown-section {
             margin: 40px 0;
@@ -1489,6 +1525,10 @@
                 <div class="wedding-date-display">
                     9th March 2026
                 </div>
+                
+                <a href="wedding-invitation.pdf" download="Priyanka_Tanmoy_Wedding_Invitation.pdf" class="download-invitation-btn">
+                    <span>📥 Download Invitation</span>
+                </a>
             </div>
         </section>
 
